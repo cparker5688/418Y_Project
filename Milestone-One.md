@@ -5,6 +5,7 @@ Objective: Each team is required to meet this milestone by submitting their proj
 Requirements:
 The project proposal should include the following items:
 •	Team Members: a list of all the team members
+Chad Parker
 
 •	Project Title
 
