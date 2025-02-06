@@ -4,7 +4,7 @@
 **•	Team Members:** (Group 5) Chad Parker, John Vasta, Jinwu Ahn, & Zachary Benedicto
 
 **•	Project Title:**
-(Some ideas: SipSync, BrewMate, DealDraft, BellyUp)
+(Some ideas: SipSync, BrewMate, DealDraft, BellyUp, SipSearch, BarBuddy, HappyHoursGo)
 
 **•	Project Description: Briefly describe the goals that this project seeks to achieve.**
 
@@ -13,13 +13,15 @@ The goal of this project is to develop an application that simplifies the proces
 **•	Project Requirements:**
 **Briefly describe the purpose of the project. Broadly, what features would the project include? Alternatively, what would you design and build?**
 
-The purpose of the project is to create an intuituve app that users can use to assist in finding the best happy hour deals. The app will include features such as a swipe interface, location based searching, deal deatils, favorite venues, review and rating system, and filtering options. The goal is to build a response, unser-friendly app that can make happy hour deals easier to find.
+The purpose of the project is to create an intuituve app that users can use to assist in finding the best happy hour deals. The app will include features such as a swipe interface, location based searching, deal deatils, favorite venues, review and rating system, and filtering options. The goal is to build a responsive and user-friendly app that can make happy hour deals easier to find.
 
 **Briefly describe each of the features you plan to implement.**
 
-Swipe interface would be similar to dating apps such as tinder, where users can quickly swipe through nearby venues with active happy hour deals. Location based searching gives users the ability to display venues within a specified radius of their current location. Deal details will allow each venue to showcase their food and drink offers and times. Favoriting venues allows users to favorite their preferred and favorite spots for easy access. Review and Rating systems allow users to rate venues based on their expereince and leave feedback for other users. And filtering options would allow users to filter by prive, distance, type of offer, or time of day.
+Swipe interface would be similar to dating apps such as tinder, where users can quickly swipe through nearby venues with active happy hour deals. A match would be populated if the users pre-selected preferences match up to the restarunts offerings. Location based searching gives users the ability to display venues within a specified radius of their current location. Deal details will allow each venue to showcase their food and drink offers and times. Favoriting venues allows users to favorite their preferred and favorite spots for easy access. Review and Rating systems allow users to rate venues based on their expereince and leave feedback for other users. The filtering option would allow users to filter by type of food/beverage, price, type of offer, or time of day.
 
 **•	Technology Stack: 
 Your initial plan on the set of technologies/frameworks you plan to use.**
+
+We are planning on using React Native for our framework, coding in JavaScript with each members personally prefered IDE, and GitHub to track our progress.
 
 # 418Y-Project
