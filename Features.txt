@@ -1,0 +1,52 @@
+Swipe interface would be similar to dating apps such as tinder, where users can quickly swipe through nearby venues with active happy hour deals. Location based searching gives users the ability to display venues within a specified radius of their current location. Deal details will allow each venue to showcase their food and drink offers and times. Favoriting venues allows users to favorite their preferred and favorite spots for easy access. Review and Rating systems allow users to rate venues based on their expereince and leave feedback for other users. And filtering options would allow users to filter by prive, distance, type of offer, or time of day.
+
+Swipe interface
+  Pictures of restarunt, pictures of the food/drinks, description of restarunt/highlights, parking cost?
+  "Matching"
+    -If customer wants <= restarunt's offering = MATCH!
+
+Location based searching
+  set distances
+    EX) 0-30 miles 
+
+Rating and reviews tab
+  favorites tab
+  restarunt experience
+  feedback for other users
+
+Filters
+  set food/drink preferences
+    EX) [] beer
+          [] draft
+          [] domestic
+          [] ipa
+        [] wine
+          [] red
+          [] white
+        [] mixed drinks
+          [] martinis
+          [] margarittas
+        [] wings
+        [] burgers
+        [] pizza
+        [] mexican
+        [] american
+
+  time of day
+    EX) [] next one hour
+        [] next two hours
+
+  parking (List in restarunt description?)
+    EX) [] on street
+        [] gargage
+        [] lot
+        [] free
+        [] free, limited space
+        [] N/A (uber/lyft/getting a ride)
+
+  user ability to add restarunts?
+    (MUST BE REVEIWED BY ADMIN)
+
+  minimum number of matching preferences option
+    EX) "Choose the minimum number of preference matches 0->10"
+      (This number would equal the wants)   
