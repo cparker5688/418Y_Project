@@ -4,7 +4,7 @@
 **•	Team Members:** (Group 5) Chad Parker, John Vasta, Jinwu Ahn, & Zachary Benedicto
 
 **•	Project Title:**
-(Some ideas: SipSync, BrewMate, DealDraft, BellyUp, SipSearch, BarBuddy, HappyHoursGo)
+BellyUp
 
 **•	Project Description: Briefly describe the goals that this project seeks to achieve.**
 
