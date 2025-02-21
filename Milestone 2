@@ -6,7 +6,17 @@ User Stories:
 Customer:
 As a customer I want to be able to swipe through restraunts so that I can select happy hour deals I am interested in.
 As a customer I want to view happy hour deals from the swiping interface so that I can view deals concisely
-As a customer I want to be able to select 
+As a customer I want to be able to select
+
+As a customer I want to be able to see what the bars atmosphere/food looks like when I am swiping through so I can decide
+if I want to visit the restarunt.
+As a customer I want to be able to set my preferences so that I can match with a restarunt that I would actually like to 
+go to.
+
+Administrator:
+As a administrator I want to be able to smothly input the restarunts with appropiate filters so that I can enter multiple 
+restarunts quickly and easily.
+
 
 Use Cases:
 
