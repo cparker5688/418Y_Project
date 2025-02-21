@@ -1,0 +1,38 @@
+Use Case Template:
+
+ID: 	[Unique ID of this use case]
+
+
+Title:	[Enter the goal of the use case - preferably as a short, active verb phrase]
+
+
+Description:	[Describe the goal and context of this use case. This is usually an expanded version of what you entered in the "Title" field.]
+
+
+Primary Actor:	[A person or a software/hardware system that interacts with your system to achieve the goal of this use case.]
+
+
+Preconditions:	[Describe the state the system is in before the first event in this use case.]
+
+
+Postconditions:	[Describe the state the system is in after all the events in this use case have taken place.]
+
+
+Main 
+Success Scenario:	[Describe the flow of events from preconditions to postconditions, when nothing goes wrong. This is the meat of the use case.]
+
+
+Extensions:	[Describe all the other scenarios for this use case - including exceptions and error cases.]
+
+
+Frequency of Use:	[How often will this use case be used?]
+
+
+Status:	[Development status]
+
+
+Owner:	[Who owns this use case, in your project team?]
+
+
+Priority:	[Priority of this use case]
+
