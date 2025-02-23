@@ -1,0 +1,45 @@
+ID: UC-01
+Title: Swipe Through Restaurants
+
+Description:
+This use case covers the scenario where a customer navigates through available happy hour deals using a swipe-based interface. 
+The interface presents each restaurant with images, key details, and deal specifics so the customer can quickly assess and 
+decide which venues to explore further.
+
+Primary Actor:
+Customer
+
+Preconditions:
+The customer is logged into the application.
+The customer’s location is enabled and accessible.
+The application has active happy hour deals and restaurant data loaded.
+The customer has optionally set preferences for food, drink, or other deal attributes.
+
+Postconditions:
+A restaurant is either matched or dismissed.
+The customer’s swipe history is updated, allowing for later review or comparison.
+
+Main Success Scenario:
+The customer launches the app and is directed to the swipe interface.
+The app displays a restaurant card with images, deal details, and key highlights.
+The customer reviews the restaurant information and swipes right to indicate interest.
+The system evaluates the swipe against the customer’s pre-set preferences.
+If the restaurant’s offerings meet or exceed the preferences threshold, it is added to the customer’s matched list.
+The customer continues swiping to view more deals.
+
+Extensions:
+Invalid Location Data: If the app cannot determine the customer’s location, a prompt is shown to enable location services.
+Network Error: If there is a connectivity issue while swiping, the app displays an error message and suggests retrying.
+Expired Deal: If a restaurant’s happy hour deal has expired, the app marks it as inactive and does not include it in the swipe sequence.
+
+Frequency of Use:
+High – Customers are likely to use the swipe feature multiple times during happy hours.
+
+Status:
+Under Development
+
+Owner:
+Zach Benedicto
+
+Priority:
+High
