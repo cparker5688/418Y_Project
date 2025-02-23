@@ -13,10 +13,17 @@ if I want to visit the restarunt.
 As a customer I want to be able to set my preferences so that I can match with a restarunt that I would actually like to 
 go to.
 
+As a customer, I want to save or favorite restaurants so that I can easily revisit and compare my preferred happy hour 
+options in the future.
+As a customer, I want to filter and sort available deals by criteria such as price, distance, type of offer,
+and time of day so that I can quickly find happy hour deals that match my preferences.
+
 Administrator:
 As a administrator I want to be able to smothly input the restarunts with appropiate filters so that I can enter multiple 
 restarunts quickly and easily.
 
+As an administrator, I want to review and moderate user-submitted restaurant entries and customer reviews so that I can ensure all 
+listings and feedback meet quality standards before they are published.
 
 Use Cases:
 
