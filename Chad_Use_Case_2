@@ -1,0 +1,51 @@
+ID:
+UC-03
+
+Title:
+Inputing Restarunts
+
+Description:
+This use case covers inputing restarunts into the app to be swiped through. The restarunts need to be inputed
+easily, quickly, and uniformly.
+
+Primary Actor:
+Administrator
+
+Preconditions:
+The app is partially built.
+There is an portion of the app available to store all of the restarunts.
+The filters are decided upon and saved, with an ability to add more if needed.
+The restarunts need to be reseached and information about them needs to be saved uniformly (Excel) for ease of entry.
+Pictures of the restarunt need to be saved (atmosphere, food, drinks).
+
+Postconditions:
+The desired amount of restarunts inputted into the app.
+The user has the ability to swipe through different restarunts based on their saved preferences.
+
+
+Main 
+Success Scenario:
+The administrator is prompted to enter the name and address of the restarunt.
+The administrator is prompted to enter the hours of the happy hour.
+The administrator is prompted to choose the filters that apply to the restarunt from the list.
+The administrator is prompted to choose picture files to be uploaded.
+The restarunt is saved to the app.
+The restarunt now appears on the swipe interface when user's preferneces match the restarunts offerings.
+
+Extensions:
+The administrator should be able to update the hours, filters, and pictures of every restarunt at any point.
+
+
+Frequency of Use:
+Medium - Initally it will be used very frequentley however after disired amount of restarunts are inputted,
+it will not be used unless a change in the restarunts offerings occurs.
+
+
+Status:
+Under Development
+
+Owner:
+Chad
+
+Priority:
+High
