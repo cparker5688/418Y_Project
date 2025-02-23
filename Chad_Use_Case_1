@@ -1,0 +1,52 @@
+ID:
+UC-02
+
+Title:
+Restaurant Filters 
+
+Description:
+This use case covers which filters/preferences the user can apply to narrow their search down. 
+The user can set things like type of food, type of drinks, hours, and how many preferences required to result in a match.
+
+Primary Actor:
+Customer
+
+Preconditions:
+The app must be loaded with all possible preferences the user can select.
+The app must be able to differentiate between a new user and an existing user.
+
+Postconditions:
+The app must be able to save the users preferences.
+The app only shows places based on the users preferences.
+
+Main 
+Success Scenario:
+
+First-time user:
+The app is opened for the first time.
+The user goes through the inital sign up process.
+The user is prompted to choose their preferences from numerous different options.
+The user preferences are saved.
+The user is only showed restarunts based on their preferences.
+
+
+Extensions:
+
+Existing user:
+The app is opened.
+The user logs into their account.
+The user selects settings, preferences, edits their preferences, and then the preferences are re-saved.
+The user is only showed restarunts based on their preferences.
+
+
+Frequency of Use:
+High - The user will initally set their preferences and may change these preferences everytime they open the app.
+
+Status:
+Under Development
+
+Owner:
+Chad
+
+Priority:
+High
