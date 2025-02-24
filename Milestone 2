@@ -21,11 +21,13 @@ and time of day so that I can quickly find happy hour deals that match my prefer
 Administrator:
 As a administrator I want to be able to smothly input the restarunts with appropiate filters so that I can enter multiple 
 restarunts quickly and easily.
-
 As an administrator, I want to review and moderate user-submitted restaurant entries and customer reviews so that I can ensure all 
 listings and feedback meet quality standards before they are published.
 
-Restaurant/Owner:
+Restraunt/Owner:
+As a restraunt owner, I want the app to show accurate information so that the customer does not get misled and angry.
+As a restraunt owner, I want the best pictures of our establishment on the app so that people are more inclined to match with us.
+As a restraunt owner, I want to be able to go on the app myself and see what my competition is offering.
 
 Use Cases:
 
@@ -34,3 +36,10 @@ Zach: Swipe Interface
 John: Parking
 
 Non-functional Requirements:
+Users should be able to swipe through the interface as fast as they desire.
+Every restarunts happy hour operation time should follow the same 12 hour, am/pm format.
+The app should be able to be used on both ios and andriod.
+The app's avalibility should be 24/7.
+The app should resemble "Tinder" but with a unique logo.
+The app should show at least 20 different restarunts from the nearby Albany area.
+The app should be easy to sign up for and use.
