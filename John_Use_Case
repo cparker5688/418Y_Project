@@ -1,0 +1,42 @@
+ID:
+UC-04
+
+Title:
+Display Parking Information in Restaurant Descriptions
+
+Description:
+This use case ensures that customers can view parking availability and options for each restaurant listed in the app. The parking details will be displayed in the restaurant’s description, allowing users to see if parking is available, free, or limited before deciding to visit.
+
+Primary Actor:
+Customer
+
+Preconditions:
+
+The restaurant profile must include parking information entered by an administrator or restaurant owner.
+The app must have a structured format to display parking details in the restaurant description.
+Postconditions:
+
+The parking information is clearly displayed when users view restaurant details.
+Customers can make informed decisions based on parking availability.
+Main Success Scenario:
+
+A restaurant is added to the app by an administrator or restaurant owner.
+The parking information is selected from predefined options (e.g., on-street, garage, lot, free, limited space, N/A).
+The customer browses restaurant details and sees the parking options listed.
+The customer makes an informed decision about visiting based on parking availability.
+Extensions:
+
+Missing Parking Info: If the restaurant does not provide parking information, the app displays "N/A" or "Parking information not available."
+User Feedback: Customers can suggest corrections if the parking information is outdated or incorrect.
+Filtering by Parking: Customers can filter restaurants based on preferred parking options (e.g., only restaurants with free parking).
+Frequency of Use:
+Moderate – Customers will check parking information when browsing restaurants, but they may not use this feature every session.
+
+Status:
+Under Development
+
+Owner:
+John Vasta
+
+Priority:
+Medium
