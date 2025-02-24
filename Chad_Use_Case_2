@@ -13,10 +13,10 @@ Administrator
 
 Preconditions:
 The app is partially built.
-There is an portion of the app available to store all of the restarunts.
+There is an portion of the app available to store all of the restaurants.
 The filters are decided upon and saved, with an ability to add more if needed.
-The restarunts need to be reseached and information about them needs to be saved uniformly (Excel) for ease of entry.
-Pictures of the restarunt need to be saved (atmosphere, food, drinks).
+The restaurants need to be researched and information about them needs to be saved uniformly (Excel) for ease of entry.
+Pictures of the restaurant need to be saved (atmosphere, food, drinks).
 
 Postconditions:
 The desired amount of restarunts inputted into the app.
@@ -33,12 +33,12 @@ The restarunt is saved to the app.
 The restarunt now appears on the swipe interface when user's preferneces match the restarunts offerings.
 
 Extensions:
-The administrator should be able to update the hours, filters, and pictures of every restarunt at any point.
+The administrator should be able to update the hours, filters, and pictures of every restaurant at any point.
 
 
 Frequency of Use:
-Medium - Initally it will be used very frequentley however after disired amount of restarunts are inputted,
-it will not be used unless a change in the restarunts offerings occurs.
+Medium - Initally it will be used very frequentley however after disired amount of restaurants are inputted,
+it will not be used unless a change in the restaurants offerings occurs.
 
 
 Status:
