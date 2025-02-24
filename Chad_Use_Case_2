@@ -29,8 +29,8 @@ The administrator is prompted to enter the name and address of the restarunt.
 The administrator is prompted to enter the hours of the happy hour.
 The administrator is prompted to choose the filters that apply to the restarunt from the list.
 The administrator is prompted to choose picture files to be uploaded.
-The restarunt is saved to the app.
-The restarunt now appears on the swipe interface when user's preferneces match the restarunts offerings.
+The restaurant is saved to the app.
+The restaurant now appears on the swipe interface when user's preferneces match the restarunts offerings.
 
 Extensions:
 The administrator should be able to update the hours, filters, and pictures of every restaurant at any point.
