@@ -36,7 +36,7 @@ Zach: Swipe Interface
 John: Parking
 
 Non-functional Requirements:
-Users should be able to swipe through the interface as fast as they desire.
+Users should be able to swipe through the interface smoothly and as fast as they desire.
 Every restarunts happy hour operation time should follow the same 12 hour, am/pm format.
 The app should be able to be used on both ios and andriod.
 The app's avalibility should be 24/7.
