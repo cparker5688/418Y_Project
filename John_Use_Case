@@ -5,7 +5,7 @@ Title:
 Display Parking Information in Restaurant Descriptions
 
 Description:
-This use case ensures that customers can view parking availability and options for each restaurant listed in the app. The parking details will be displayed in the restaurant’s description, allowing users to see if parking is available, free, or limited before deciding to visit.
+This use case ensures that customers can view parking availability and options for each restaurant listed in the app. The parking details will be displayed in the restaurant’s description, allowing users to see what type of parking is provided.
 
 Primary Actor:
 Customer
