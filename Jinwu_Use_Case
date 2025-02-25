@@ -1,0 +1,44 @@
+ID:
+UC-05
+
+Title:
+Restaurant Favorites List
+
+Description:	
+This use case implements a list of restaurants that can be added or removed by the user in order to keep track of the user's favorite restaurants.
+When the user is on the app, the user can open the favorites list and see which restaurants on the list are currently open.
+
+Primary Actor:
+Customer
+
+Preconditions:
+The user must add at least one restaurant to the list.
+The user must be logged in to their account.
+
+Postconditions:
+The app will save the list and update the list whenever the user adds or removes another restaurant.
+
+Main 
+Success Scenario:
+The app is opened by the user.
+The user signs in or creates an account.
+If the favorites list is empty, wait for the user to add a restaurant to the list.
+Save and update the user's favourites list.
+When the user clicks on the favorites tab, show the favorites list including the name of the restaurant, the distance, and whether or not it is open.
+Allow the user to update the list by removing any restaurants on the list.
+
+Extensions:	
+If the user has not added anything to the list and clicks the favorites tab, the page will show "This list is empty, add a restaurant from the restaurants tab"
+If the user is not logged in to an account, show "You must log in or create an account"
+
+Frequency of Use:
+Medium - This feature is not required to use and the app can be used without using this feature, however some users may use it often.
+
+Status:
+Under Development
+
+Owner:	
+Jinwu
+
+Priority:	
+Medium
