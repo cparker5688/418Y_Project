@@ -14,12 +14,14 @@ go to.
 options in the future.
 - As a customer, I want to filter and sort available deals by criteria such as price, distance, type of offer,
 and time of day so that I can quickly find happy hour deals that match my preferences.
+- As a customer, I want to be able to see the menu and reviews of the restaurant before I visit.
 
 Administrator:
 - As an administrator, I want to be able to smoothly input the restaurants with appropriate filters so that I can enter multiple 
 restaurants quickly and easily.
 - As an administrator, I want to review and moderate user-submitted restaurant entries and customer reviews so that I can ensure all 
 listings and feedback meet quality standards before they are published.
+- As an administrator, I want to be able to remove users or restaurants from the platform if they are leaving fake reviews or rated very poorly.
 
 Restaurant/Owner:
 - As a restaurant owner, I want the app to show accurate information so that the customer does not get misled and angry.
