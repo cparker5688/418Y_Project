@@ -28,9 +28,10 @@ Restaurant/Owner:
 
 Use Cases:
 
-Chad: Restarunt Filters/ User Preferences, Restarunt Inputting
+Chad: Restaurant Filters/ User Preferences, Restaurant Inputting
 Zach: Swipe Interface
 John: Parking
+Jinwu: Restaurant Favorites List
 
 Non-functional Requirements:
 Users should be able to swipe through the interface smoothly and as fast as they desire.
