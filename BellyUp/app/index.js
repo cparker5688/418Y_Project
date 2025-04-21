@@ -1,9 +1,9 @@
-import { Text, View } from "react-native";
+import { Text, View, StyleSheet } from "react-native";
 
 const HomeScreen = () => {
   return (
     <View style = { styles.container}>
-      <Text>Edit app/index.jsx to edit this screen.</Text>
+      <Text>Edit app/index.js to edit this screen.</Text>
     </View>
     );
 };
