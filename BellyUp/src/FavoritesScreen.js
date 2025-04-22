@@ -6,23 +6,8 @@ export default function Page() {
     <View style={styles.container}>
       <View style={styles.main}>
         <Text style={styles.title}>Hello!</Text>
-        <Text style={styles.subtitle}>This is the first page of the app.</Text>
-          <Link href="/home" asChild>
-            <Pressable style={styles.button}>
-              <Text style ={styles.buttonText}>Go to HomeScreen</Text>
-            </Pressable>
-          </Link>
-          <Link href="/favorites" asChild>
-            <Pressable style={styles.button}>
-              <Text style ={styles.buttonText}>Go to Favorites page</Text>
-            </Pressable>
-          </Link>
-          <Link href="/preferences" asChild>
-            <Pressable style={styles.button}>
-              <Text style ={styles.buttonText}>Go to Preferences</Text>
-            </Pressable>
-          </Link>
-      </View>
+        <Text style={styles.subtitle}>This is the favorites screen.</Text>
+        </View>
     </View>
   );
 }

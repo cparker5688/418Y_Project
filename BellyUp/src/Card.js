@@ -2,7 +2,7 @@ import React from 'react';
 import {Text, ImageBackground, View, StyleSheet} from 'react-native';
 
 const Card = props => {
-  const {name, image, bio} = props.user;
+  const {name, image, bio} = props.user
   return (
     <View style={styles.card}>
       <ImageBackground
