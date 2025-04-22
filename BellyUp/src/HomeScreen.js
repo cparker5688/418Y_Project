@@ -1,36 +1,41 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import Card from './Card';
+import CardStack from 'reac-native-card-stack-swiper';
+import City from '../app/city';
+import Filters from '../app/filters';
+import Card from '../app/card';
+import styles from '../public/styles';
 import HappyHours from '../public/restaurants/HappyHours';
 
 const HomeScreen = () => {
-  const onSwipeLeft = user => {
-    console.warn('swipe left', user.name);
-  };
-
-  const onSwipeRight = user => {
-    console.warn('swipe right: ', user.name);
-  };
-
   return (
-    <View style={styles.pageContainer}>
-      <AnimatedStack
-        data={HappyHours}
-        renderItem={({item}) => <Card user={item} />}
-        onSwipeLeft={onSwipeLeft}
-        onSwipeRight={onSwipeRight}
-      />
+    <View style={styles.containerHome}>
+        <View style={styles.top}>
+          <City />
+          <Filters />
+        </View>
+
+      <CardStack
+      loop={true}
+      verticalSwipe={false}
+      renderNoMoreCards={() => null}
+      ref={swiper => (this.swiper = swiper)}
+      >
+        {HappyHours.map((item, index) => (
+          <Card key = {index}>
+            <CardItem
+            image={item.image}
+            name={item.name}
+            bio={item.bio}
+            matches={item.match}
+            actions
+            onPressLeft={() => this.swiper.swipeLeft()}
+            onPressRight={() => this.swiper.swipeRight()}
+            />
+            </Card>
+        ))}
+      </CardStack>
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  pageContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1,
-    width: '100%',
-  },
-});
-
 export default HomeScreen;
