@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
-import CardStack from 'reac-native-card-stack-swiper';
+import CardStack from 'react-native-card-stack-swiper';
 import City from '../app/city';
 import Filters from '../app/filters';
 import Card from '../app/card';
