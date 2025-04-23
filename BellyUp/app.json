@@ -4,6 +4,7 @@
     "slug": "bellyup",
     "platforms": ["ios", "android", "web"],
     "entryPoint": "./App.js",
+    "name": "BellyUp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -14,9 +15,7 @@
       "supportsTablet": true
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+      
       }
     },
     "web": {
@@ -40,4 +39,3 @@
       "typedRoutes": true
     }
   }
-}
