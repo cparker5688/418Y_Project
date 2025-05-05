@@ -3,7 +3,6 @@ import {BrowserRouter, Routes, Route} from "react-router-dom";
 import Login from './Login';
 import SignUp from './SignUp';
 import RestSignUp from './RestSignUp';
-import Preferences from './Preferences';
 
 function App(){
     return(
@@ -13,7 +12,6 @@ function App(){
             <Route path = "Login" element = {<Login/>}/>
             <Route path = "SignUp" element = {<SignUp/>}/>
             <Route path = "RestSignUp" element = {<RestSignUp/>}/>
-            <Route path= "Preferences" element={<Preferences/>} />
         </Routes>
         </BrowserRouter>
     );
