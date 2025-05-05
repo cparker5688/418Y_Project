@@ -19,6 +19,22 @@ database.on('error', (error) => console.log(error))
 
 database.once('connected', () => console.log('Databased Connected'))
 
+app.get('/api/user/me', authMiddleware, async (req, res) => {
+  const user = await User.findById(req.user.id)
+                         .select('username preferences');
+  res.json(user);
+});
+
+app.put('/api/user/preferences', authMiddleware, async (req, res) => {
+  const { cuisines, priceRange, distance } = req.body;
+  const updated = await User.findByIdAndUpdate(
+    req.user.id,
+    { preferences: { cuisines, priceRange, distance } },
+    { new: true }
+  );
+  res.json(updated.preferences);
+});
+
 app.post('/createUser', async (req, res) => {
     console.log(`SERVER: CREATE USER REQ BODY: ${req.body.username} ${req.body.firstName} ${req.body.lastName}`)
     const un = req.body.username
