@@ -11,8 +11,6 @@ import Favorites   from './Favorites';
 
 function App() {
   return (
-    <BrowserRouter>
-      <Header />
       <Routes>
         <Route path="/"            element={<Login />}      />
         <Route path="/login"       element={<Login />}      />
@@ -23,7 +21,6 @@ function App() {
         <Route path="/favorites"   element={<Favorites />}  />
         <Route path="*"            element={<Navigate to="/" replace/>} />
       </Routes>
-    </BrowserRouter>
   );
 }
 

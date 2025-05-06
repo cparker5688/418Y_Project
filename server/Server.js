@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 
 const User = require('./UserSchema');
 const Restaurant = require('./RestaurantSchema');
+const Favorite = require('./FavoritesSchema');
 
 const app = express();
 app.use(express.json());
@@ -12,7 +13,7 @@ app.use(cors());
 // ——————————————————————————
 // MongoDB Connection
 // ——————————————————————————
-const mongoString = 'mongodb+srv://cparker4:BellyUp2025@cluster0.hcu16fb.mongodb.net/bellyup?retryWrites=true&w=majority';
+const mongoString = 'mongodb+srv://cparker4:BellyUp2025@cluster0.hcu16fb.mongodb.net';
 mongoose.connect(mongoString, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -96,6 +97,40 @@ app.post('/savePreferences', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Failed to save preferences' });
+  }
+});
+
+app.post('/addFavorite', async (req, res) => {
+  try {
+    const { userId, restaurantId } = req.body;
+    const favorite = new Favorite({ userId, restaurantId });
+    await favorite.save();
+    res.status(201).json(favorite);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to add favorite' });
+  }
+});
+
+app.get('/getFavorites', async (req, res) => {
+  try {
+    const { userId } = req.query;
+    const favorites = await Favorite.find({ userId }).populate('restaurantId'); // Populate restaurant data
+    res.json(favorites);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch favorites' });
+  }
+});
+
+app.delete('/removeFavorite/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Favorite.deleteOne({ _id: id });
+    res.status(200).send('Favorite removed');
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to remove favorite' });
   }
 });
 

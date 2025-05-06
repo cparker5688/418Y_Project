@@ -9,6 +9,7 @@ const RestSignUp = () => {
     const [restOptions, setRestOptions] = useState([]);
     const [customOption, setCustomOption] = useState('');
     const [restImage, setRestImage] = useState('');
+    const [restDescription, setRestDescription] = useState('');
 
     const defaultOptions = ['Beer', 'Wine', 'Cocktails', 'Appetizers'];
 
@@ -38,7 +39,8 @@ const RestSignUp = () => {
             address: restAddress,
             hours: restHours,
             options: restOptions,
-            image: restImage
+            image: restImage,
+            description: restDescription
         })
         .catch((err) => alert('Error in Signing Up'))
 
@@ -108,6 +110,15 @@ const RestSignUp = () => {
                 type= "text"
                 value = {restImage}
                 onChange = {(e) => setRestImage(e.target.value)}
+                required
+            />
+            </div>
+
+            <div>
+                <label> Restaurant Description: </label>
+                <textarea
+                value = {restDescription}
+                onChange = {(e) => setRestDescription(e.target.value)}
                 required
             />
             </div>
