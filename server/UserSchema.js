@@ -6,7 +6,18 @@ const UserSchema = new mongoose.Schema({
     username: String,
     password: String,
     options: [String],
-    numOptions: String  
+    numOptions: String,
+    preferences: {
+        showRestaurants: Boolean,
+        showBars: Boolean,
+        startTime: String,
+        endTime: String,
+        priceLevels: Object,
+        minRating: Number,
+        maxDistance: Number,
+        days: Object
+      }
+        
 });
 
 const User = mongoose.model("User", UserSchema);
