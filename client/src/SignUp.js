@@ -8,6 +8,7 @@ const SignUp = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [userOptions, setuserOptions] = useState([]);
+    const [numOptions, setnumOptions] = useState('');
 
     const defaultOptions = ['Beer', 'Wine', 'Cocktails', 'Appetizers'];
 
@@ -24,7 +25,7 @@ const SignUp = () => {
     const handleSignUp = (event) => {
         event.preventDefault();
 
-        axios.post('http://localhost:9000/createUser', { firstName, lastName, username, password, options: userOptions })
+        axios.post('http://localhost:9000/createUser', { firstName, lastName, username, password, options: userOptions, numOptions })
             .catch((err) => alert('Error in Signing Up'))
     }
 
@@ -69,7 +70,7 @@ const SignUp = () => {
             </div>
 
             <div>
-                <label>User Options:</label>
+                <label>Food/Drink Options:</label>
                 {defaultOptions.map((option) => (
                     <div key={option}>
                         <input
@@ -86,6 +87,15 @@ const SignUp = () => {
                         <strong>Selected Options:</strong> {userOptions.join(', ')}
                     </div>
                 )}
+            </div>
+            <div>
+                <label> Number of options for a match: </label>
+                <input
+                type = "text"
+                value = {numOptions}
+                onChange = {(e) => setnumOptions(e.target.value)}
+                required
+            />
             </div>
 
             <button type = "submit"> Submit </button>
