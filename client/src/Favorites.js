@@ -1,42 +1,64 @@
 // src/Favorites.js
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import './Favorites.css'; // optional
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function Favorites() {
-  const [favs, setFavs] = useState([]);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    setFavs(JSON.parse(localStorage.getItem('favs') || '[]'));
-  }, []);
+  // Load favorites from localStorage (array of deal objects)
+  const [favorites, setFavorites] = useState(
+    JSON.parse(localStorage.getItem('favorites') || '[]')
+  );
 
-  const remove = id => {
-    const updated = favs.filter(d => d.id !== id);
-    localStorage.setItem('favs', JSON.stringify(updated));
-    setFavs(updated);
+  const removeFavorite = (id) => {
+    const updated = favorites.filter(f => f._id !== id);
+    setFavorites(updated);
+    localStorage.setItem('favorites', JSON.stringify(updated));
   };
 
-  if (!favs.length) {
-    return (
-      <div>
-        <p>No favorites yet.</p>
-        <Link to="/homepage">Browse Deals</Link>
-      </div>
-    );
-  }
-
   return (
-    <div className="fav-list">
-      <h1>Your Favorites</h1>
-      {favs.map(d => (
-        <div key={d.id} className="fav-card">
-          <h3>{d.name}</h3>
-          <p><em>{d.happyHour}</em></p>
-          <p>{d.description}</p>
-          <button onClick={() => remove(d.id)}>Remove</button>
+    <div className="container py-4">
+      {/* Header with back navigation */}
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="mb-0">Your Favorites</h2>
+        <button
+          className="btn btn-outline-primary"
+          onClick={() => navigate(-1)}
+        >
+          ← Back to Deals
+        </button>
+      </div>
+
+      {favorites.length === 0 ? (
+        <div className="text-center text-muted">
+          No favorites yet! Swipe right on deals to add them here.
         </div>
-      ))}
-      <Link to="/homepage">← Back to browse</Link>
+      ) : (
+        <div className="row">
+          {favorites.map(deal => (
+            <div key={deal._id} className="col-sm-6 col-md-4 col-lg-3 mb-4">
+              <div className="card h-100 shadow-sm">
+                <img
+                  src={deal.image}
+                  alt={deal.name}
+                  className="card-img-top"
+                  style={{ objectFit: 'cover', height: '200px' }}
+                />
+                <div className="card-body d-flex flex-column">
+                  <h5 className="card-title">{deal.name}</h5>
+                  <p className="card-text text-truncate">{deal.happyHour}</p>
+                  <button
+                    className="btn btn-danger mt-auto"
+                    onClick={() => removeFavorite(deal._id)}
+                  >
+                    Remove
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
