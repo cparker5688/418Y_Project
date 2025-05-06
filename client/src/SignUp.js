@@ -7,11 +7,24 @@ const SignUp = () => {
     const [lastName, setLastName] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [userOptions, setuserOptions] = useState([]);
+
+    const defaultOptions = ['Beer', 'Wine', 'Cocktails', 'Appetizers'];
+
+    const handleOptionChange = (e) => {
+        const { value, checked } = e.target;
+
+        if (checked) {
+            setuserOptions((prev) => [...prev, value]);
+        } else {
+            setuserOptions((prev) => prev.filter((option) => option !== value));
+        }
+    };
 
     const handleSignUp = (event) => {
         event.preventDefault();
 
-        axios.post('http://localhost:9000/createUser', { firstName, lastName, username, password })
+        axios.post('http://localhost:9000/createUser', { firstName, lastName, username, password, options: userOptions })
             .catch((err) => alert('Error in Signing Up'))
     }
 
@@ -54,6 +67,27 @@ const SignUp = () => {
                 required
             />
             </div>
+
+            <div>
+                <label>User Options:</label>
+                {defaultOptions.map((option) => (
+                    <div key={option}>
+                        <input
+                            type="checkbox"
+                            value={option}
+                            checked={userOptions.includes(option)}
+                            onChange={handleOptionChange}
+                        />
+                        {option}
+                    </div>
+                ))}
+                {userOptions.length > 0 && (
+                    <div>
+                        <strong>Selected Options:</strong> {userOptions.join(', ')}
+                    </div>
+                )}
+            </div>
+
             <button type = "submit"> Submit </button>
             <div>
                 <Link to = "/Login">Have an account? Login</Link>

@@ -7,18 +7,37 @@ const RestSignUp = () => {
     const [restAddress, setRestAddress] = useState('');
     const [restHours, setRestHours] = useState('');
     const [restOptions, setRestOptions] = useState([]);
+    const [customOption, setCustomOption] = useState('');
     const [restImage, setRestImage] = useState('');
+
+    const defaultOptions = ['Beer', 'Wine', 'Cocktails', 'Appetizers'];
+
+    const handleOptionChange = (e) => {
+        const { value, checked } = e.target;
+
+        if (checked) {
+            setRestOptions((prev) => [...prev, value]);
+        } else {
+            setRestOptions((prev) => prev.filter((option) => option !== value));
+        }
+    };
+
+    const handleAddCustomOption = () => {
+        const trimmed = customOption.trim();
+        if (trimmed && !restOptions.includes(trimmed)) {
+            setRestOptions((prev) => [...prev, trimmed]);
+            setCustomOption('');
+        }
+    };
 
     const handleRestSignUp = (event) => {
         event.preventDefault();
-
-        const optionsArray = restOptions.split(',').map(option => option.trim());
 
         axios.post('http://localhost:9000/createRestaurant', { 
             name: restName,
             address: restAddress,
             hours: restHours,
-            options: optionsArray,
+            options: restOptions,
             image: restImage
         })
         .catch((err) => alert('Error in Signing Up'))
@@ -54,13 +73,34 @@ const RestSignUp = () => {
             />
             </div>
             <div>
-                <label> Restaurant Options: </label>
-                <input
-                type= "text"
-                value = {restOptions}
-                onChange = {(e) => setRestOptions(e.target.value)}
-                required
-            />
+                <label>Restaurant Options:</label>
+                {defaultOptions.map((option) => (
+                    <div key={option}>
+                        <input
+                            type="checkbox"
+                            value={option}
+                            checked={restOptions.includes(option)}
+                            onChange={handleOptionChange}
+                        />
+                        {option}
+                    </div>
+                ))}
+                <div>
+                    <input
+                        type="text"
+                        placeholder="Add custom option"
+                        value={customOption}
+                        onChange={(e) => setCustomOption(e.target.value)}
+                    />
+                    <button type="button" onClick={handleAddCustomOption}>
+                        Add Option
+                    </button>
+                </div>
+                {restOptions.length > 0 && (
+                    <div>
+                        <strong>Selected Options:</strong> {restOptions.join(', ')}
+                    </div>
+                )}
             </div>
             <div>
                 <label> Restaurant Image URL: </label>
