@@ -1,54 +1,73 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+// src/Homepage.js
+import React, { useState, useEffect } from 'react';
+import { useSwipeable } from 'react-swipeable';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import './HomeScreen.css';
 
-const HomeScreen = () => {
-  const [restaurants, setRestaurants] = useState([]);
+export default function Homepage() {
+  const [deals, setDeals]     = useState([]);
+  const [idx, setIdx]         = useState(0);
   const [loading, setLoading] = useState(true);
+  const navigate              = useNavigate();
 
+  // Fetch happy-hour deals
   useEffect(() => {
-    axios
-      .get("http://localhost:9000/getRestaurants")
-      .then((response) => {
-        setRestaurants(response.data);
+    axios.get('http://localhost:9000/getDeals')
+      .then(response => {
+        setDeals(response.data);
         setLoading(false);
       })
-      .catch((error) => {
-        console.error("Error fetching restaurants:", error);
+      .catch(error => {
+        console.error(error);
         setLoading(false);
       });
   }, []);
 
-  const renderItem = (restaurant) => {
-    return (
-      <div className="card" key={restaurant._id}>
-        <img
-          src={restaurant.imageURL}
-          alt={restaurant.restName}
-          className="image"
-        />
-        <h2 className="title">{restaurant.restName}</h2>
-        <p className="description">{restaurant.restOptions}</p>
-        <p className="hours">{restaurant.restHours}</p>
-      </div>
-    );
-  };
+  // Swipe handlers: left = skip, right = favorite + next
+  const handlers = useSwipeable({
+    onSwipedLeft: () => setIdx(i => Math.min(i + 1, deals.length - 1)),
+    onSwipedRight: () => {
+      const favs = JSON.parse(localStorage.getItem('favs') || '[]');
+      const current = deals[idx];
+      if (!favs.find(d => d.id === current.id)) {
+        favs.push(current);
+        localStorage.setItem('favs', JSON.stringify(favs));
+      }
+      setIdx(i => Math.min(i + 1, deals.length - 1));
+    },
+    trackMouse: true,
+  });
 
-  if (loading) {
+  if (loading) return <p>Loading…</p>;
+
+  if (!deals.length) {
     return (
-      <div className="loadingContainer">
-        <div className="spinner">Loading...</div>
+      <div>
+        <p>No deals found.</p>
+        <button onClick={() => navigate('/preferences')}>Set Preferences</button>
+        <button onClick={() => navigate('/favorites')} style={{ marginLeft: 8 }}>
+          View Favorites
+        </button>
       </div>
     );
   }
 
+  const { name, description, happyHour } = deals[idx];
+
   return (
-    <div className="container">
-      <div className="scrollContainer">
-        {restaurants.map(renderItem)}
+    <div className="card-container" {...handlers}>
+      <div className="card">
+        <h2>{name}</h2>
+        <p><em>{happyHour}</em></p>
+        <p>{description}</p>
+        <div className="card-actions">
+          <button onClick={() => setIdx(i => Math.max(i - 1, 0))}>Prev ←</button>
+          <button onClick={() => navigate('/favorites')}>View Favorites</button>
+          <button onClick={() => setIdx(i => Math.min(i + 1, deals.length - 1))}>Next →</button>
+        </div>
+        <small>Swipe right to add to favorites</small>
       </div>
     </div>
   );
-};
-
-export default HomeScreen;
+}
