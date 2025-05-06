@@ -12,7 +12,7 @@ const Login = () => {
             .then((res) => {
                 if (res.data) {
                     alert('Login Successful')
-                    navigate('/RestSignUp')
+                    navigate('/Homepage')
                 }
                 else {
                     alert('Wrong Credentials')

@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const RestaurantSchema = new mongoose.Schema({
-    restName: String,
-    restAddress: String,
-    restHours: String,
-    restOptions: String
+    name: String,
+    address: String,
+    hours: String,
+    options: [String],
+    image: String
 });
 
 const Restaurant = mongoose.model("Restaurant", RestaurantSchema);

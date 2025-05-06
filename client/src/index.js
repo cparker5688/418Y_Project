@@ -4,10 +4,11 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter, Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
+import { Route, createBrowserRouter, createRoutesFromElements, RouterProvider } from 'react-router-dom';
 import Login from './Login';
 import SignUp from './SignUp';
 import RestSignUp from './RestSignUp';
+import HomeScreen from './Homepage';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -18,6 +19,7 @@ const router = createBrowserRouter(
     <Route path = "/Login" element = {<Login/>}/>
     <Route path = "/SignUp" element = {<SignUp/>}/>
     <Route path = "/RestSignUp" element = {<RestSignUp/>}/>
+    <Route path = "HomeScreen" element = {<HomeScreen/>}/>
     </>
   )
 )

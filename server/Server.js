@@ -17,7 +17,7 @@ const database = mongoose.connection
 
 database.on('error', (error) => console.log(error))
 
-database.once('connected', () => console.log('Databased Connected'))
+database.once('connected', () => console.log('Database Connected'))
 
 app.post('/createUser', async (req, res) => {
     console.log(`SERVER: CREATE USER REQ BODY: ${req.body.username} ${req.body.firstName} ${req.body.lastName}`)
@@ -54,36 +54,32 @@ app.get('/getUser', async (req, res) => {
     }
 })
 app.post('/createRestaurant', async (req, res) => {
-    const{ name, address, hours, options} = req.body;
+    console.log('SERVER: Creating restaurant with the following data:', req.body);
+    const{ name, address, hours, options, image} = req.body;
     try{
-        const project = new Project({
+        const restaurant = new Restaurant({
             name,
             address,
             hours,
             options,
+            image
     });
-    await project.save();
-    console.log(`Restaurant created! ${project}`)
-    res.send(project);
+    await restaurant.save();
+    console.log(`Restaurant created! ${restaurant}`)
+    res.send(restaurant);
 } catch (error) {
     console.error("Error creating restaurant:", error);
     res.status(500).send(error);
 }
-});
+})
 
 app.get('/getRestaurants', async (req, res) => {
-    console.log("SERVER: GET RESTAURANTS (ALL)");
-    try{
-        const restaurants = await Restaurant.find()
-            .populate('name', 'restName')
-            .populate('address', 'restAddress')
-            .populate('hours', 'restHours')
-            .populate('options', 'restOptions');
-
-        console.log('Restaurants found:', restaurants);
-        res.send(projects);
-    } catch (error){
-        console.error("Error finding restaurants:", error);
+    console.log(`SERVER: GET RESTAURANT REQ BODY: ${JSON.stringify(req.query)}`);
+    const { name, address, hours, options, image } = req.query;
+    try {
+        const restaurant = await Restaurant.find({ name, address, hours, options, image });
+        res.send(restaurant);
+    } catch (error) {
         res.status(500).send(error);
     }
 });
