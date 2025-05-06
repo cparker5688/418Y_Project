@@ -1,85 +1,106 @@
 const express = require('express');
 const cors = require('cors');
-const app = express();
+const mongoose = require('mongoose');
+
 const User = require('./UserSchema');
 const Restaurant = require('./RestaurantSchema');
 
+const app = express();
 app.use(express.json());
-app.use(cors())
-app.listen(9000, ()=> {
-    console.log('Server Started at ${9000}')
-})
+app.use(cors());
 
-const mongoose = require('mongoose');
-const mongoString = "mongodb+srv://cparker4:BellyUp2025@cluster0.hcu16fb.mongodb.net/"
-mongoose.connect(mongoString)
-const database = mongoose.connection
-
-database.on('error', (error) => console.log(error))
-
-database.once('connected', () => console.log('Database Connected'))
-
-app.post('/createUser', async (req, res) => {
-    console.log(`SERVER: CREATE USER REQ BODY: ${req.body.username} ${req.body.firstName} ${req.body.lastName}`)
-    const un = req.body.username
-    try {
-        //Check if username already exists in database
-        User.exists({username: un}).then(result => {
-            if(Object.is(result, null)) {
-                const user = new User(req.body);
-                user.save()
-                console.log(`User created! ${user}`)
-                res.send(user)
-            }
-            else {
-                console.log("Username already exists")
-                res.status(500).send("Username already exists")
-            }
-        })
-    }
-    catch (error){
-        res.status(500).send(error)
-    }
-})
-app.get('/getUser', async (req, res) => {
-    console.log(`SERVER: GET USER REQ BODY: ${JSON.stringify(req.query)}`)
-    const username = req.query.username
-    const password = req.query.password
-    try {
-        const user = await User.findOne({ username, password })
-        res.send(user)
-    }
-    catch (error) {
-        res.status(500).send(error)
-    }
-})
-app.post('/createRestaurant', async (req, res) => {
-    console.log('SERVER: Creating restaurant with the following data:', req.body);
-    const{ name, address, hours, options, image} = req.body;
-    try{
-        const restaurant = new Restaurant({
-            name,
-            address,
-            hours,
-            options,
-            image
-    });
-    await restaurant.save();
-    console.log(`Restaurant created! ${restaurant}`)
-    res.send(restaurant);
-} catch (error) {
-    console.error("Error creating restaurant:", error);
-    res.status(500).send(error);
-}
-})
-
-app.get('/getRestaurants', async (req, res) => {
-    console.log(`SERVER: GET RESTAURANT REQ BODY: ${JSON.stringify(req.query)}`);
-    const { name, address, hours, options, image } = req.query;
-    try {
-        const restaurant = await Restaurant.find({ name, address, hours, options, image });
-        res.send(restaurant);
-    } catch (error) {
-        res.status(500).send(error);
-    }
+// ——————————————————————————
+// MongoDB Connection
+// ——————————————————————————
+const mongoString = 'mongodb+srv://cparker4:BellyUp2025@cluster0.hcu16fb.mongodb.net/bellyup?retryWrites=true&w=majority';
+mongoose.connect(mongoString, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 });
+const db = mongoose.connection;
+db.on('error', (err) => console.error('MongoDB connection error:', err));
+db.once('open', () => console.log('✅ Connected to MongoDB'));
+
+// ——————————————————————————
+// Routes
+// ——————————————————————————
+
+// POST /createUser
+// Expects { firstName, lastName, username, password }
+app.post('/createUser', async (req, res) => {
+  try {
+    const { firstName, lastName, username, password } = req.body;
+    const existing = await User.findOne({ username });
+    if (existing) return res.status(409).json({ error: 'Username already exists' });
+
+    const user = new User({ firstName, lastName, username, password, preferences: [] });
+    await user.save();
+    res.status(201).json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to create user' });
+  }
+});
+
+// GET /getUser?username=yourName
+app.get('/getUser', async (req, res) => {
+  try {
+    const { username } = req.query;
+    const user = await User.findOne({ username });
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch user' });
+  }
+});
+
+// POST /createRestaurant
+// Expects { name, address, hours, options, image }
+app.post('/createRestaurant', async (req, res) => {
+  try {
+    const { name, address, hours, options, image } = req.body;
+    const restaurant = new Restaurant({ name, address, hours, options, image });
+    await restaurant.save();
+    res.status(201).json(restaurant);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to create restaurant' });
+  }
+});
+
+// GET /getDeals
+// Returns all restaurants (you can filter here if you only want those with active deals)
+app.get('/getDeals', async (req, res) => {
+  try {
+    const deals = await Restaurant.find();
+    res.json(deals);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch deals' });
+  }
+});
+
+// POST /savePreferences
+// Expects { username, preferences: [arrayOfRestaurantIds] }
+app.post('/savePreferences', async (req, res) => {
+  try {
+    const { username, preferences } = req.body;
+    const user = await User.findOneAndUpdate(
+      { username },
+      { preferences },
+      { new: true }
+    );
+    if (!user) return res.status(404).json({ error: 'User not found' });
+    res.json(user);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to save preferences' });
+  }
+});
+
+// ——————————————————————————
+// Start Server
+// ——————————————————————————
+const PORT = process.env.PORT || 9000;
+app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
