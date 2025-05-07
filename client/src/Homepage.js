@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { useAuth } from './AuthContext';
 import './HomeScreen.css';
 
 export default function Homepage() {
@@ -9,8 +10,8 @@ export default function Homepage() {
   const [idx, setIdx] = useState(0);
   const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
+  const { user } = useAuth();
 
-  // Fetch deals
   useEffect(() => {
     axios.get('http://localhost:9000/getDeals')
       .then(response => {
@@ -25,30 +26,29 @@ export default function Homepage() {
 
   const handleLike = async () => {
     const currentDeal = deals[idx];
-    const userId = localStorage.getItem('userId');
-  
+    const userId = user?._id;
+
     if (!userId || !currentDeal._id) {
       console.error("Missing userId or deal ID");
       return;
     }
-  
+
     try {
       await axios.post('http://localhost:9000/addFavorite', {
         userId,
         restaurantId: currentDeal._id,
       });
-  
-      // Move to next deal
+
       setIdx(i => Math.min(i + 1, deals.length - 1));
     } catch (error) {
       console.error("Failed to add favorite:", error);
     }
   };
+
   const handleSkip = () => {
     setIdx(i => Math.min(i + 1, deals.length - 1));
   };
 
-  // Swipe handlers
   const handlers = useSwipeable({
     onSwipedLeft: handleSkip,
     onSwipedRight: handleLike,
@@ -86,7 +86,7 @@ export default function Homepage() {
         </div>
 
         <div style={{ marginTop: 10 }}>
-        <button onClick={handleSkip} style={{ backgroundColor: '#c0f0c0' }}>
+          <button onClick={handleSkip} style={{ backgroundColor: '#f0c0c0' }}>
             👎 Dislike
           </button>
           <button onClick={handleLike} style={{ backgroundColor: '#c0f0c0' }}>
@@ -96,9 +96,8 @@ export default function Homepage() {
         <small>Swipe right to like, left to skip</small>
       </div>
       <div>
-            <Link to = "/preferences">User Preferences</Link>
-        </div>
+        <Link to="/preferences">User Preferences</Link>
+      </div>
     </div>
-    
   );
 }

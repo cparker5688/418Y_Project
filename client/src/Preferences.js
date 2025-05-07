@@ -1,23 +1,25 @@
-// src/Preferences.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useAuth } from './AuthContext';
 import './Preferences.css';
 
 export default function Preferences() {
   const [showRestaurants, setShowRestaurants] = useState(true);
-  const [showBars, setShowBars]             = useState(true);
-  const [startTime, setStartTime]           = useState('17:00');
-  const [endTime, setEndTime]               = useState('20:00');
+  const [showBars, setShowBars] = useState(true);
+  const [startTime, setStartTime] = useState('17:00');
+  const [endTime, setEndTime] = useState('20:00');
 
   // New preference states
-  const [priceLevels, setPriceLevels]       = useState({ 1: true, 2: true, 3: true });
-  const [minRating, setMinRating]           = useState(0);
-  const [maxDistance, setMaxDistance]       = useState(5);
-  const [days, setDays]                     = useState({
+  const [priceLevels, setPriceLevels] = useState({ 1: true, 2: true, 3: true });
+  const [minRating, setMinRating] = useState(0);
+  const [maxDistance, setMaxDistance] = useState(5);
+  const [days, setDays] = useState({
     Mon: true, Tue: true, Wed: true,
     Thu: true, Fri: true, Sat: true,
     Sun: true
   });
+  const { user } = useAuth();
 
   const navigate = useNavigate();
 
@@ -29,20 +31,37 @@ export default function Preferences() {
     setDays(prev => ({ ...prev, [day]: !prev[day] }));
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const prefs = {
-      showRestaurants,
-      showBars,
-      startTime,
-      endTime,
-      priceLevels,
-      minRating,
-      maxDistance,
-      days
+
+    const userId = user?._id;
+    if (!userId) {
+      alert("User is not logged in.");
+      return;
+    }
+
+    const preferences = {
+      preferences: {
+        showRestaurants,
+        showBars,
+        startTime,
+        endTime,
+        priceLevels,
+        minRating,
+        maxDistance,
+        days
+      }
     };
-    localStorage.setItem('preferences', JSON.stringify(prefs));
-    navigate('/homepage');
+
+    try {
+      // Send the preferences to the backend
+      await axios.post('http://localhost:9000/savePreferences', preferences);
+      alert("Preferences saved successfully!");
+      navigate('/homepage');  // Navigate to homepage after saving preferences
+    } catch (error) {
+      console.error("Error saving preferences:", error);
+      alert("Failed to save preferences");
+    }
   };
 
   return (

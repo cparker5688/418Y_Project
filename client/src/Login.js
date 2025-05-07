@@ -1,16 +1,19 @@
 import React, {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import axios from 'axios';
+import { useAuth } from './AuthContext';
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+    const { setUser } = useAuth();
 
     const handleLogin = (event) => {
         axios.get('http://localhost:9000/getUser', { params: {username, password}})
             .then((res) => {
                 if (res.data) {
+                    setUser(res.data);
                     navigate('/Homepage')
                 }
                 else {

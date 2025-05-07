@@ -82,23 +82,34 @@ app.get('/getDeals', async (req, res) => {
   }
 });
 
-// POST /savePreferences
-// Expects { username, preferences: [arrayOfRestaurantIds] }
 app.post('/savePreferences', async (req, res) => {
   try {
     const { username, preferences } = req.body;
+
+    if (!preferences || !username) {
+      return res.status(400).json({ error: 'Invalid request data' });
+    }
+
     const user = await User.findOneAndUpdate(
       { username },
       { preferences },
       { new: true }
     );
-    if (!user) return res.status(404).json({ error: 'User not found' });
+
+    if (!user) {
+      console.log('User not found for username:', username);
+      return res.status(404).json({ error: 'User not found' });
+    }
+
+    console.log("Updated user:", user);
     res.json(user);
   } catch (err) {
-    console.error(err);
-    res.status(500).json({ error: 'Failed to save preferences' });
+    console.error('Error saving preferences:', err);
+    res.status(500).json({ error: 'Failed to save preferences'});
   }
 });
+
+
 
 app.post('/addFavorite', async (req, res) => {
   try {
@@ -115,7 +126,7 @@ app.post('/addFavorite', async (req, res) => {
 app.get('/getFavorites', async (req, res) => {
   try {
     const { userId } = req.query;
-    const favorites = await Favorite.find({ userId }).populate('restaurantId'); // Populate restaurant data
+    const favorites = await Favorite.find({ userId }).populate('restaurantId');
     res.json(favorites);
   } catch (err) {
     console.error(err);
