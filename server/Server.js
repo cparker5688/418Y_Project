@@ -60,8 +60,8 @@ app.get('/getUser', async (req, res) => {
 // Expects { name, address, hours, options, image }
 app.post('/createRestaurant', async (req, res) => {
   try {
-    const { name, address, hours, options, image } = req.body;
-    const restaurant = new Restaurant({ name, address, hours, options, image });
+    const { name, address, hours, options, image, description} = req.body;
+    const restaurant = new Restaurant({ name, address, hours, options, image, description });
     await restaurant.save();
     res.status(201).json(restaurant);
   } catch (err) {

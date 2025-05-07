@@ -11,7 +11,8 @@ const RestSignUp = () => {
     const [restImage, setRestImage] = useState('');
     const [restDescription, setRestDescription] = useState('');
 
-    const defaultOptions = ['Beer', 'Wine', 'Cocktails', 'Appetizers'];
+    const defaultOptions = ['Beer', 'Wine', 'Cocktails', 'Pizza', 'Wings', 'Appetizers'];
+    const defaultParking = ['Free', 'Paid', 'Garage', 'Street', 'None'];
 
     const handleOptionChange = (e) => {
         const { value, checked } = e.target;
@@ -75,7 +76,7 @@ const RestSignUp = () => {
             />
             </div>
             <div>
-                <label>Restaurant Options:</label>
+            <label>Restaurant Options:</label>
                 {defaultOptions.map((option) => (
                     <div key={option}>
                         <input
@@ -86,6 +87,20 @@ const RestSignUp = () => {
                         />
                         {option}
                     </div>
+                ))}
+                </div>
+                <div>
+                <label>Parking Options:</label>
+                {defaultParking.map((option) => (
+                <div key={option}>
+                    <input
+                        type="checkbox"
+                        value={option}
+                        checked={restOptions.includes(option)}
+                        onChange={handleOptionChange}
+                    />
+                    {option}
+                </div>
                 ))}
                 <div>
                     <input
@@ -104,6 +119,7 @@ const RestSignUp = () => {
                     </div>
                 )}
             </div>
+            
             <div>
                 <label> Restaurant Image URL: </label>
                 <input
