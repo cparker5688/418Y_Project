@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSwipeable } from 'react-swipeable';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './HomeScreen.css';
 
@@ -86,13 +86,19 @@ export default function Homepage() {
         </div>
 
         <div style={{ marginTop: 10 }}>
+        <button onClick={handleSkip} style={{ backgroundColor: '#c0f0c0' }}>
+            👎 Dislike
+          </button>
           <button onClick={handleLike} style={{ backgroundColor: '#c0f0c0' }}>
-            👍 Like / Add to Favorites
+            👍 Like
           </button>
         </div>
-
         <small>Swipe right to like, left to skip</small>
       </div>
+      <div>
+            <Link to = "/preferences">User Preferences</Link>
+        </div>
     </div>
+    
   );
 }

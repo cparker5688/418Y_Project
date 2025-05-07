@@ -16,7 +16,7 @@ function App() {
         <Route path="/login"       element={<Login />}      />
         <Route path="/signup"      element={<SignUp />}     />
         <Route path="/restsignup"  element={<RestSignUp />} />
-        <Route path="/preferences" element={<Preferences/>} />
+        <Route path="/preferences" element={<Preferences />} />
         <Route path="/homepage"    element={<Homepage />}   />
         <Route path="/favorites"   element={<Favorites />}  />
         <Route path="*"            element={<Navigate to="/" replace/>} />

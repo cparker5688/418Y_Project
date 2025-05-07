@@ -11,7 +11,6 @@ const Login = () => {
         axios.get('http://localhost:9000/getUser', { params: {username, password}})
             .then((res) => {
                 if (res.data) {
-                    alert('Login Successful')
                     navigate('/Homepage')
                 }
                 else {
@@ -47,7 +46,7 @@ const Login = () => {
         <Link to = "/signup">Don't have an account? Sign up</Link>
         </div>
         <div>
-            <Link to = "/restsignup">Restaurant Entry</Link>
+        <Link to = "/restsignup">Restaurant Entry</Link>
         </div>
         </form>
     );
