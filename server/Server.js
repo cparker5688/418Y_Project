@@ -30,11 +30,11 @@ db.once('open', () => console.log('✅ Connected to MongoDB'));
 // Expects { firstName, lastName, username, password }
 app.post('/createUser', async (req, res) => {
   try {
-    const { firstName, lastName, username, password } = req.body;
+    const { firstName, lastName, username, password, options, numOptions } = req.body;
     const existing = await User.findOne({ username });
     if (existing) return res.status(409).json({ error: 'Username already exists' });
 
-    const user = new User({ firstName, lastName, username, password, preferences: [] });
+    const user = new User({ firstName, lastName, username, password, options, numOptions });
     await user.save();
     res.status(201).json(user);
   } catch (err) {
